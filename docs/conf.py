@@ -78,13 +78,13 @@ todo_include_todos = False
 
 
 # -- Options for HTML output ----------------------------------------------
-import os
-on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
+# import os
+# on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
 
-if not on_rtd:  # only import and set the theme if we're building docs locally
-    import sphinx_rtd_theme
-    html_theme = 'sphinx_rtd_theme'
-    html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
+# if not on_rtd:  # only import and set the theme if we're building docs locally
+import sphinx_rtd_theme
+html_theme = 'sphinx_rtd_theme'
+html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
@@ -173,6 +173,12 @@ texinfo_documents = [
      author, 'sphinx-rtd-tocdepth-confusion-demonstration', 'One line description of project.',
      'Miscellaneous'),
 ]
+
+def build_finished(app, exception):
+    app.info("Sphinx RTD Theme `html_theme_path`: {}".format(html_theme_path))
+
+def setup(app):
+    app.connect("build-finished", build_finished)
 
 
 
