@@ -1,0 +1,2 @@
+sphinx
+-e git://github.com/rtfd/sphinx_rtd_theme.git#egg=master
